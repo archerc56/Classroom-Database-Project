@@ -1,0 +1,104 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Lesson Plans in a Date Range</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  
+	</head>
+
+
+	<body>
+	
+		<form method="POST" id = "weeklyLessonPlanQ1">
+			<div class = "container">
+			
+			<div class="page-header">
+			  <h1>Find Student Information by ID</h1>
+			</div>
+			
+			<div class = "form-group">
+				 {% csrf_token %}			
+		
+				<label for="sel1">Please select a start and end date for the range:</label>
+				
+				<div class = "container">
+					<div class = "container">
+						<div class="form-group row">
+						  <label for="startDate" class="col-2 col-form-label">Date Range Start</label>
+						  <div>
+							<input class="form-control" type="date" value="2016-01-01" id="startDate" name= "startDate" min="2016-01-01" max="2018-01-01">
+							
+						  </div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="endDate" class="col-2 col-form-label">Date Range End</label>
+							<div>
+								<input class="form-control" type="date" value="2018-01-01" id="endDate" name= "endDate" min="2016-01-01" max="2018-01-01">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<br>
+				<input class="btn btn-primary" type="submit" value="Find Student">
+				<br>
+				
+				
+				
+				<br>
+				
+			
+			</div>
+			</div>	
+		
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+			<table class= "table table-hover">
+			<caption>Lesson Plans in Date Range {{choice}}</caption>
+			  <thead>
+				
+				<th>Week Number</th>
+				<th>Summary</th> 
+				<th>Start Date</th>
+				<th>End Date</th>
+				
+			  </thead>  
+			  
+				
+				{% for r in results %}
+					<tr>
+						<td>{{r.week_no}}</td>
+						<td>{{r.summary}}</td>					
+						<td>{{r.start_date}}</td>
+						<td>{{r.end_date}}</td>
+						
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>

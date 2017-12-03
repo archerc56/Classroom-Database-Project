@@ -1,0 +1,97 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Student Information</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</head>
+
+
+	<body>
+	
+					
+		<form method="POST" id = "studentQ">
+			<div class = "container">
+			
+			<div class="page-header">
+			  <h1>Find Student Information by ID</h1>
+			</div>
+			<div class = "form-group">
+			 {% csrf_token %}
+			
+			
+	
+			<label for="sel1">Please select a student id:</label>
+			<select name = "studentQ1" form = "studentQ" class = "form-control" id = "sel1">
+			
+				{% for student in students %}
+						
+						<option value = {{student.student_id}}>{{student.student_id}}</option>						
+					
+				{% endfor %}	
+
+			</select>
+			<br>
+			<input class="btn btn-primary" type="submit" value="Find Student">
+			<br>
+			
+			
+			
+			<br>
+			
+			
+			</div>
+			</div>		
+			
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+		
+		
+			<table class= "table table-hover">
+			<caption>Student {{choice}}</caption>
+			  <thead>
+				
+				<th>Name</th> 
+				<th>DOB</th>
+				<th>Address</th>
+				<th>Grade</th>
+				<th>Emergency Contact Number</th>
+			  </thead>  
+			  
+				
+				{% for r in results %}
+					<tr>
+						<td>{{r.lname}}, {{r.fname }}</td>					
+						<td>{{r.date_of_birth}}</td>
+						<td>{{r.address}}</td>
+						<td>{{r.overall_grade}}</td>
+						<td>{{r.emergency_contact_no}}</td>
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>

@@ -1,0 +1,95 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Assigned Assignments</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		  
+	</head>
+
+
+	<body>
+	
+			
+		<form method="POST" id = "assignmentQ">
+		
+			<div class = "container">
+			
+			<div class="page-header">
+			  <h1>Find Students Who Have Been Assigned an Assignment</h1>
+			</div>
+			<div class = "form-group">
+			{% csrf_token %}
+			
+			<label for="sel1">Please select an assignment number:</label>
+	
+			<select name = "assignmentQ3" form = "assignmentQ" class = "form-control" id = "sel1">
+			
+				{% for assignment in assignments %}
+					
+						<option value = {{assignment.assignment_no}}>{{assignment.assignment_no}}</option> 
+					
+				{% endfor %}	
+
+			</select>
+			
+			<br>
+			<input class="btn btn-primary" type="submit" value="Find Student Who've Been Given this Assignment">
+			<br>
+			
+			
+			
+			<br>
+			
+			
+			</div>
+			</div>		
+		
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+			<table class= "table table-hover">
+			<caption>Student's who have been assigned Assignment #{{choice}}</caption>
+			  <thead>
+				
+				<th>Student ID</th>
+				<th>Student Name</th>
+				
+				
+			  </thead>  
+			  
+				
+				{% for r in results %}
+				
+					<tr>
+						
+						<td>{{r.student_id}}</td>
+						<td>{{r.lname}}, {{ r.fname}}</td>
+						
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>

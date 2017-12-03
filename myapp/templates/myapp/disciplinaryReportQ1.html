@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Disciplinary Report Information</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+  
+	</head>
+
+
+	<body>
+	
+		
+		
+			
+			
+		<form method="POST" id = "disciplinaryReportQ">
+			<div class = "container">
+			
+			<div class="page-header">
+			  <h1>Find Disciplinary Report by Report Number</h1>
+			</div>
+			
+			<div class = "form-group">
+			 {% csrf_token %}
+			
+			
+	
+			<label for="sel1">Please select a disciplinary report number:</label>
+			<select name = "disciplinaryReportQ1" form = "disciplinaryReportQ" class = "form-control" id = "sel1">
+			
+				{% for disciplinaryReport in disciplinaryReports %}
+					
+						<option value = {{disciplinaryReport.report_no}}>{{disciplinaryReport.report_no}}</option> 
+					
+				{% endfor %}	
+
+			</select>
+			
+			<br>
+			<input class="btn btn-primary" type="submit" value="Find Disciplinary Report">
+			<br>
+			
+			
+			
+			<br>
+			
+			
+			</div>
+			</div>	
+		
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+			<table class= "table table-hover">
+			<caption>Disciplinary Report #{{choice}}</caption>
+			  <thead>
+				
+				<th>Student Involved</th>
+				<th>Incident</th>
+				<th>Time</th>
+				<th>Severity Index</th>
+				
+				
+			  </thead>  
+			  
+				
+				{% for r in results %}
+				
+					<tr>
+						
+						<td>{{r.student_id}}</td>
+						<td>{{r.incident}}</td>
+						<td>{{r.time}}</td>
+						<td>{{r.severity_index}}</td>
+						
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>

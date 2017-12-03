@@ -1,0 +1,110 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Classroom Database</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link type="text/css" rel="stylesheet" href="{% static 'css/reportStyle.css' %}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+  
+	</head>
+
+	<body>
+		<div class = "alert alert-warning">
+			<h1>Welcome to the Django Elementary Classroom Database</h1>
+		</div>
+		
+		<br>
+		
+		
+		
+		<div class = "container">
+		<form action="http://127.0.0.1:8000/admin">
+			<input class="btn btn-primary" type="submit" value="Log in to Admin Page" />
+		</form>
+		
+		<br>
+			<table class= "table table-hover">
+			  <thead>
+				
+				<th>Students</th>
+				<th>Assignments</th>
+				<th>Disciplinary Reports</th>
+				<th>Weekly Lesson Plan</th>
+				<th>iStation Program</th>
+				
+				
+			  </thead>  			
+				
+					<tr>
+						
+						<td><a href="{% url 'index' %}/studentReport" target = "_blank">Student Report</a></td>
+						<td><a href="{% url 'index' %}/assignmentReport" target = "_blank">Assignment Report</a></td>
+						<td><a href="{% url 'index' %}/disciplinaryReport" target = "_blank">Disciplinary Report</a></td>
+						<td><a href="{% url 'index' %}/weeklyLessonPlanReport" target = "_blank">Weekly Lesson Plan Report</a></td>
+						<td><a href="{% url 'index' %}/iStationProgramReport" target = "_blank">iStation Program Report</a></td>
+						
+					</tr>
+					
+					<tr>
+					
+						<td><a href="{% url 'index' %}/studentQ1" target = "_blank">Student Q1</a></td>						
+						<td><a href="{% url 'index' %}/assignmentQ1" target = "_blank">Assignment Q1</a></td>
+						<td><a href="{% url 'index' %}/disciplinaryReportQ1" target = "_blank">Disciplinary Report Q1</a></td>	
+						<td><a href="{% url 'index' %}/weeklyLessonPlanQ1" target = "_blank">Weekly Lesson Plan Q1</a></td>						
+						<td><a href="{% url 'index' %}/iStationQ1" target = "_blank">iStation Q1</a></td>						
+					
+					</tr>
+					
+					<tr>
+					
+						<td><a href="{% url 'index' %}/studentQ2" target = "_blank">Student Q2</a></td>						
+						<td><a href="{% url 'index' %}/assignmentQ2" target = "_blank">Assignment Q2</a></td>
+						<td><a href="{% url 'index' %}/disciplinaryReportQ2" target = "_blank">Disciplinary Report Q2</a></td>	
+						<td><a href="{% url 'index' %}/weeklyLessonPlanQ2" target = "_blank">Weekly Lesson Plan Q2</a></td>						
+						<td><a href="{% url 'index' %}/iStationQ2" target = "_blank">iStation Q2</a></td>						
+					
+					</tr>
+					
+					<tr>
+					
+						<td></td>
+						<td><a href="{% url 'index' %}/assignmentQ3" target = "_blank">Assignment Q3</a></td>
+						<td><a href="{% url 'index' %}/disciplinaryReportQ3" target = "_blank">Disciplinary Report Q3</a></td>
+						<td></td>
+						<td></td>
+					
+					
+					</tr>
+					
+					<tr>
+					
+						<td> </td>
+						<td><a href="{% url 'index' %}/assignmentQ4" target = "_blank">Assignment Q4</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					
+					
+					</tr>
+					
+					
+				
+			  
+			</table>
+		</div>
+			
+		
+		
+	</body>
+
+</html>

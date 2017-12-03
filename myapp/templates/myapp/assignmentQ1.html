@@ -1,0 +1,104 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Assignment Information</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+  
+	</head>
+
+
+	<body>
+	
+		
+		
+	
+		<form method="POST" id = "assignmentQ">
+			<div class = "container">
+			
+			<div class = "page-header">
+			
+				<h1>Find Assignment Information by Assignment Number</h1>
+				
+			</div>
+			
+			<div class = "form-group">				
+			{% csrf_token %}
+			
+			<label for="sel1">Please select an assignment number:</label>
+			<select name = "assignmentQ1" form = "assignmentQ" class = "form-control" id = "sel1">
+			
+				{% for assignment in assignments %}
+					
+						<option value = {{assignment.assignment_no}}>{{assignment.assignment_no}}</option> 
+					
+				{% endfor %}	
+
+			</select>
+			
+			<br>
+			<input class="btn btn-primary" type="submit" value="Find Assignment">
+			<br>
+			
+			
+			
+			<br>
+			
+			
+			</div>
+			</div>	
+		
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+		
+			<table class= "table table-hover">
+			<caption>Assignment {{choice}}</caption>
+			  <thead>
+				
+				<th>subject</th>
+				<th>name</th> 
+				<th>due_date</th>
+				<th>total_points</th>
+				<th>week_no</th>
+				
+			  </thead>  
+			  
+				
+				{% for r in results %}
+					<tr>
+						<td>{{r.subject}}</td>
+						<td>{{r.name}}</td>					
+						<td>{{r.due_date}}</td>
+						<td>{{r.total_points}}</td>
+						<td>{{r.week_no}}</td>
+						
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>

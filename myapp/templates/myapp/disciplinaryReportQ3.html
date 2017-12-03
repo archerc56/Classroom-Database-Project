@@ -1,0 +1,100 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Disciplinary Reports by Severity</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+  
+	</head>
+
+
+	<body>
+	
+		<form method="POST" id = "disciplinaryReportQ">
+			<div class = "container">
+			
+			<div class="page-header">
+			  <h1>Find Disciplinary Reports by Severity Index</h1>
+			</div>
+			<div class = "form-group">
+			 {% csrf_token %}
+			
+			
+	
+			<label for="sel1">Please select a severity index to group by:</label>
+	
+			<select name = "disciplinaryReportQ3" form = "disciplinaryReportQ" class = "form-control" id = "sel1">				
+					
+						<option value = 1>Accidental</option> 
+						<option value = 2>Minor</option> 
+						<option value = 3>Average</option> 
+						<option value = 4>Major</option> 
+									
+
+			</select>
+		<br>
+			<input class="btn btn-primary" type="submit" value="Find Reports">
+			<br>
+			
+			
+			
+			<br>
+			
+			
+			</div>
+			</div>		
+			
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+			<table class= "table table-hover">
+			
+			<caption>Disciplinary Reports with severity index {{choice}}</caption>
+			  <thead>
+				
+				<th>Student ID</th>
+				<th>Report Number</th>
+				<th>Incident</th>
+				
+				
+				
+				
+			  </thead>  
+			  
+				
+				{% for r in results %}
+				
+					<tr>
+						<td>{{r.student_id}}</td>						
+						<td>{{r.report_no}}</td>
+						<td>{{r.incident}}</td>
+												
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>

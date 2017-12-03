@@ -1,0 +1,92 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>Student Grade Grouping</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+	</head>
+
+
+	<body>
+	
+			
+		<form method="POST" id = "studentQ2">
+			<div class = "container">
+			 {% csrf_token %}
+			 
+			 <div class="page-header">
+			  <h1>Group Student's by Grade</h1>
+			</div>
+			<div class = "form-group">
+			<label for="sel1">Please choose a grade to group by: </label>		
+			<select name = "studentQ2" form = "studentQ2" class = "form-control" id = "sel1" >				
+					
+				<option value = "100">Above 100</option>
+				<option value = "90">Above 90</option> 
+				<option value = "80">Above 80</option> 
+				<option value = "70">Above 70</option> 
+				<option value = "60">Above 60</option>
+				<option value = "50">Above 50</option>
+				<option value = "40">Above 40</option> 
+				<option value = "30">Above 30</option> 
+				<option value = "20">Above 20</option> 
+				<option value = "10">Above 10</option>
+				<option value = "0">Above 0</option>							
+
+			</select>
+			
+			<br>
+			<input class="btn btn-primary" type="submit" value="Find Grade Group">
+			<br>
+			<br>
+			
+			</div>
+			</div>
+			
+		</form>
+		
+		
+			
+		{% if results %}
+			
+			<div class = "container">
+				<table class= "table table-hover">
+				<caption>Above {{choice}}</caption>
+				  <thead>
+					
+					<th>Name</th> 
+					<th>Grade</th>
+					
+				  </thead>  
+				  
+					
+					{% for r in results %}
+						<tr>
+						
+							<td>{{r.lname}}, {{ r.fname }}</td>							
+							<td>{{r.overall_grade}}</td>
+							
+						</tr>
+					{% endfor %}	
+				 
+				  
+				</table>
+			</div>						
+			
+		{% endif %}
+		
+		
+	</body>
+	
+</html>

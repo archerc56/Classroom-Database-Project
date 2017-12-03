@@ -1,0 +1,101 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+		<title>iStation Programs by Student</title>
+		<meta charset="utf-8">		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+  
+	</head>
+
+
+	<body>
+	
+		
+	
+		<form method="POST" id = "iStationQ">
+			<div class = "container">
+			
+			<div class="page-header">
+			  <h1>Find iStation Programs by Student ID</h1>
+			</div>
+			<div class = "form-group">
+			 {% csrf_token %}			
+	
+			<label for="sel1">Please select a student id:</label>
+			
+	
+			<select name = "iStationQ2" form = "iStationQ" class = "form-control" id = "sel1">
+			
+				{% for student in students %}
+					
+						<option value = {{student.student_id}}>{{student.student_id}}</option> 
+					
+				{% endfor %}	
+
+			</select>
+			
+			<br>
+			<input class="btn btn-primary" type="submit" value="Find Student">
+			<br>
+			
+			
+			
+			<br>
+			
+			
+			</div>
+			</div>	
+		
+			
+		</form>
+			
+			{% if results %}
+			
+		<div class = "container">
+			<table class= "table table-hover">
+			<caption>iStation Programs for Student #{{choice}}</caption>
+			  <thead>
+				
+				<th>Program Number</th>
+				<th>Month</th>
+				<th>Number of Sections</th>
+				<th>Time Limit</th>
+				
+				
+			  </thead>  
+			  
+				
+				{% for r in results %}
+				
+					<tr>
+						
+						<td>{{r.program_no}}</td>
+						<td>{{r.month}}</td>
+						<td>{{r.no_of_sections}}</td>
+						<td>{{r.time_limit}} Mins</td>
+						
+					 </tr>
+				{% endfor %}	
+			 
+			  
+			</table>
+		</div>
+				
+				
+			
+			{% endif %}
+		
+		
+	</body>
+	
+</html>
